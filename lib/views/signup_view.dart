@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:instagram_clone/logic/auth.dart';
 import 'package:instagram_clone/utils/app_colors.dart';
 import 'package:instagram_clone/widgets/text_field.dart';
 
@@ -10,10 +11,11 @@ class SignUpView extends StatefulWidget {
 }
 
 class _SignUpViewState extends State<SignUpView> {
-  final TextEditingController inputEmail = TextEditingController();
-  final TextEditingController inputPassword = TextEditingController();
-  final TextEditingController inputFirstName = TextEditingController();
-  final TextEditingController inputLastName = TextEditingController();
+  final TextEditingController _inputEmail = TextEditingController();
+  final TextEditingController _inputPassword = TextEditingController();
+  final TextEditingController _inputFirstName = TextEditingController();
+  final TextEditingController _inputLastName = TextEditingController();
+  final TextEditingController _inputUserName = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,14 +56,14 @@ class _SignUpViewState extends State<SignUpView> {
                 children: [
                   Expanded(
                     child: AppTextField(
-                      inputText: inputFirstName,
+                      inputText: _inputFirstName,
                       hintText: 'First Name',
                     ),
                   ),
                   const SizedBox(width: 15),
                   Expanded(
                     child: AppTextField(
-                      inputText: inputLastName,
+                      inputText: _inputLastName,
                       hintText: 'Last Name',
                     ),
                   ),
@@ -69,14 +71,20 @@ class _SignUpViewState extends State<SignUpView> {
               ),
               const SizedBox(height: 18),
               AppTextField(
+                hintText: 'Username',
+                inputText: _inputUserName,
+                keyboardType: TextInputType.emailAddress,
+              ),
+              const SizedBox(height: 18),
+              AppTextField(
                 hintText: 'Email',
-                inputText: inputEmail,
+                inputText: _inputEmail,
                 keyboardType: TextInputType.emailAddress,
               ),
               const SizedBox(height: 18),
               AppTextField(
                 hintText: 'Password',
-                inputText: inputPassword,
+                inputText: _inputPassword,
                 keyboardType: TextInputType.visiblePassword,
                 isPassword: true,
               ),
@@ -84,7 +92,17 @@ class _SignUpViewState extends State<SignUpView> {
               SizedBox(
                 width: double.infinity,
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () async{
+                    String response = await Auth().signUp(
+                      email: _inputEmail.text,
+                      password: _inputPassword.text,
+                      username: _inputUserName.text,
+                      firstName: _inputFirstName.text,
+                      lastName: _inputLastName.text,
+                    );
+                    print(response);
+                    print(_inputEmail.text);
+                  },
                   style: TextButton.styleFrom(
                     backgroundColor: blueColor,
                     padding: const EdgeInsets.symmetric(
