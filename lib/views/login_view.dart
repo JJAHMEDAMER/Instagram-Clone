@@ -10,8 +10,8 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
-  final TextEditingController inputEmail = TextEditingController();
-  final TextEditingController inputPassword = TextEditingController();
+  final TextEditingController _inputEmail = TextEditingController();
+  final TextEditingController _inputPassword = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -31,14 +31,14 @@ class _LoginViewState extends State<LoginView> {
               ),
               const SizedBox(height: 64),
               AppTextField(
-                hintText: 'Email',
-                inputText: inputEmail,
+                hintText: 'Email, Username',
+                inputText: _inputEmail,
                 keyboardType: TextInputType.emailAddress,
               ),
               const SizedBox(height: 18),
               AppTextField(
                 hintText: 'Password',
-                inputText: inputPassword,
+                inputText: _inputPassword,
                 keyboardType: TextInputType.visiblePassword,
                 isPassword: true,
               ),
