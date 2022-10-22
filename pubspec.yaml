@@ -35,6 +35,9 @@ dependencies:
   firebase_core: ^2.1.0
   firebase_storage: ^11.0.2
 
+  # Image Picker
+  image_picker: ^0.8.6
+
   # Flutter
   flutter:
     sdk: flutter
